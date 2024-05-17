@@ -32,7 +32,7 @@ const gltfLoader = new GLTFLoader();
 // Load garage model
 gltfLoader.load('/garage/scene.gltf', (gltf) => {
     garageModel = gltf.scene;
-    garageModel.position.set(0, 0, 21);
+    garageModel.position.set(0, 0, 2);
     scene.add(garageModel);
 });
 
