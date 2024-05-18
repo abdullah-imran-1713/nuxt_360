@@ -22,7 +22,10 @@ import TheExperience from '~/component/TheExperience.vue';
  </script>
  
  <template>
-    <TheExperience />
+    <ClientOnly>
+        <TheExperience />
+        <Sidebar />
+    </ClientOnly>
 </template>
  
  <style lang="scss" scoped>

@@ -100,7 +100,7 @@ const loop = () => {
         <div class="canvas-container">
             <canvas ref="experience" :width="width" :height="height"></canvas>
         </div>
-       <Sidebar />
+       <!-- <Sidebar /> -->
         <BRButton />
     </div>
 </template>
