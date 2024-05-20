@@ -1,7 +1,7 @@
 
 
 <template>
-    <button class="transparent-button">All Done</button>
+    <button class="transparent-button">Apply Changes</button>
 </template>
 
 <style  scoped>
