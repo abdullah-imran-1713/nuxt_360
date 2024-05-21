@@ -128,12 +128,32 @@ function setRenderer() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // It uses Math.min(window.devicePixelRatio, 2) to limit the pixel ratio to the device's pixel density or a maximum of 2.
         controls = new OrbitControls(camera, renderer.domElement); // camera specifies the camera used for orbiting, and renderer.domElement is the canvas element to which the controls are bound.
         controls.enableDamping = true; // enableDamping enables smooth damping of the controls' movements.
-        controls.enableZoom = false;
+        controls.enableZoom = true;
+        controls.minDistance = 3; // Minimum distance from camera to target
+        controls.maxDistance = 4; // Maximum distance from camera to target
         // controls.enableRotate = false;
         // This line calls a function (updateRenderer()) to update the renderer's size and render the scene.
+          // Set limits on the vertical rotation (polar angle) to prevent camera from moving below the floor or above the ceiling
+          controls.minPolarAngle = THREE.MathUtils.degToRad(47); // Adjust as needed (in degrees)
+        controls.maxPolarAngle = THREE.MathUtils.degToRad(80); // Adjust as needed (in degrees)
         updateRenderer(); // It ensures that the initial rendering of the scene reflects any changes made during the setup process.
     }
 }
+function switchToInteriorView() {
+    if (model) {
+        // Set camera position inside the car
+        camera.position.set(0, 2, -1); // Adjust position as needed
+        camera.lookAt(model.position); // Look at the car model
+        // controls.target = model.position; // Set the orbit controls target to the car model position
+        // Adjust zoom distance to allow closer view
+        controls.minDistance = 0.9; // Minimum distance from camera to target
+        controls.maxDistance = 2; // Maximum distance from camera to target
+        controls.minPolarAngle = THREE.MathUtils.degToRad(47); // Adjust as needed (in degrees)
+        controls.maxPolarAngle = THREE.MathUtils.degToRad(80); // Adjust as needed (in degrees)
+        controls.update(); 
+    }
+}
+
 // watch is a Vue.js function used to monitor changes in a reactive property.
 watch(aspectRatio, () => { // In this case, it's watching the aspectRatio computed property, which depends on the width and height of the window or canvas
 // This arrow function is the callback that runs whenever the aspectRatio changes.
@@ -172,6 +192,7 @@ const loop = () => {
             <canvas ref="experience" :width="width" :height="height"></canvas>
         </div>
        <!-- <Sidebar /> -->
+       <button @click="switchToInteriorView">Interior</button>
         <!-- <BRButton /> -->
     </div>
 </template>
