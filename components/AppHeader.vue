@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <nav class="navbar navbar-expand-lg" style="background-color: rgba(255, 255, 255, 0.1);">
       <div class="container-fluid">
@@ -47,4 +47,4 @@
   width: 100%;
   z-index: 1; /* Ensure the navbar is in front of the 3D scene */
 }
-</style>
+</style> -->

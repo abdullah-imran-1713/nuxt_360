@@ -14,11 +14,11 @@
         <button class="sidebar-button" @click="showNewSidebar = false">Change Vehicle</button>
         <button class="sidebar-button" @click="showNewSidebar = false">Start Over</button>
         <button class="sidebar-button" @click="showNewSidebar = false">Save</button>
-        <button class="sidebar-button text-start" @click="handleClick('Trim')">Trim</button> <!-- When the button is clicked, the handleClick method is called with the argument 'Trim' -->
-        <button class="sidebar-button text-start" @click="handleClick('Packages')">Packages</button>
-        <button class="sidebar-button text-start" @click="handleClick('Color')">Color</button>
-        <button class="sidebar-button text-start" @click="handleClick('Wheels')">Wheels</button>
-        <button class="sidebar-button text-start" @click="handleClick('Interior')">Interior</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.TRIM)">Trim</button> <!-- When the button is clicked, the handleClick method is called with the argument 'Trim' -->
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.PACKAGES)">Packages</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.COLOR)">Color</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.WHEELS)">Wheels</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.INTERIOR)">Interior</button>
       </div>
     </nav>
 
@@ -39,6 +39,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { CAR_VARIANTS } from '~/constants/general';
 
 const showNewSidebar = ref(false); // This line initializes a reactive reference named showNewSidebar with an initial value of false. This variable likely controls the visibility of the sidebar.
 const selectedOption = ref(''); //  This line initializes another reactive reference named selectedOption with an initial value of an empty string. This variable likely holds the currently selected option in the sidebar.
@@ -52,10 +53,10 @@ const handleClick = (optonclick) => { // This defines a function named handleCli
 <style scoped>
 .sidebar {
   position: absolute;
-  top: 9.7%;
+  top: 0;
   left: 0;
   width: 200px;
-  height: 94.5%;
+  height: 100%;
   z-index: 1000;
   display: flex;
   align-items: center;

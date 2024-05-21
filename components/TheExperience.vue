@@ -4,7 +4,7 @@ import { ref, onMounted, watch, computed } from 'vue'; // Import ref, onMounted,
 import { useWindowSize } from '@vueuse/core'; // Import useWindowSize from @vueuse/core
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'; // Import GLTFLoader from three.js
 import { OrbitControls } from 'three/examples/jsm/Addons.js'; // Import OrbitControls from three.js
-import { BufferGeometryUtils } from 'three/examples/jsm/Addons.js';
+// import { BufferGeometryUtils } from 'three/examples/jsm/Addons.js';
 
 let renderer: THREE.WebGLRenderer; // WebGLRenderer for rendering 3D scene
 let controls: OrbitControls; // OrbitControls for controlling 3D model
@@ -39,12 +39,27 @@ scene.add(light);
 // Lodaing 3D models
 const gltfLoader = new GLTFLoader();
 
+// Loading state and progress
+const isLoading = ref(true);
+const loadingProgress = ref(0);
+
 // Garage model
 gltfLoader.load('/garage/scene.gltf', (gltf) => { // Once the model is loaded successfully, the provided callback function is executed, passing the loaded gltf object as a parameter.
     garageModel = gltf.scene; // gltf.scene refers to the root of the loaded GLTF scene, which contains all the objects and elements defined in the GLTF file
     garageModel.position.set(0, 0, 0);
     scene.add(garageModel);
-});
+    loadingProgress.value += 50;
+    checkLoadingStatus();
+    // loading.value = false;
+},
+    // (xhr) => { // onProgress parameters
+        // updateProgress(xhr);
+        // console.log(xhr);
+        (xhr) => {
+    // Calculate progress for garage model loading
+    loadingProgress.value = (xhr.loaded / xhr.total) * 50;
+  
+ });
 
 // Car model
 gltfLoader.load('/carr/scene.gltf', (gltf) => {
@@ -55,7 +70,29 @@ gltfLoader.load('/carr/scene.gltf', (gltf) => {
     } else {
         scene.add(model); // If garageModel is not available, add the car model directly to the scene
     }
+    loadingProgress.value += 50;
+    checkLoadingStatus();
+
+},
+    // (xhr) => { // onProgress parameters
+    //     // updateProgress(xhr);
+    //     // console.log(xhr);
+    (xhr) => {
+    // Calculate progress for garage model loading
+    loadingProgress.value = (xhr.loaded / xhr.total) * 50;
+  
 });
+    
+
+    // Check loading status
+function checkLoadingStatus() {
+  if (loadingProgress.value >= 100 && isLoading.value) {
+    isLoading.value = false;
+    setTimeout(() => {
+      // Optionally, add fade-out animation here
+    }, 1000); // Adjust the duration of the fade out animation as needed
+  }
+}
 
 // Update camera aspect ratio
 function updateCamera() {
@@ -112,6 +149,13 @@ const loop = () => {
 
 <template>
     <div>
+        <!-- Loading screen -->
+    <div v-if="isLoading" class="loading-screen">
+      <div class="loading-progress">{{ loadingProgress.toFixed(2) }}%</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: loadingProgress + '%' }"></div>
+      </div>
+    </div>
         <div class="canvas-container">
             <canvas ref="experience" :width="width" :height="height"></canvas>
         </div>
@@ -126,6 +170,39 @@ const loop = () => {
   position: relative;
   width: 100%;
   height: calc(100% - 50px); /* Subtract the navbar height from the viewport height */
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999; /* Ensure loading screen is on top */
+}
+
+.loading-progress {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  width: 200px;
+  height: 20px;
+  background-color: #dddddd;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 10px;
+  transition: width 0.5s ease; /* Adjust the transition duration as needed */
 }
 
 </style>

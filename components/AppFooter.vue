@@ -1,20 +1,20 @@
-<script setup lang="ts">
+<!--<script setup lang="ts">
 
 </script>
 
 <template>
     <div>
-        <!-- Basic Footer HTML using Bootstrap 5 -->
+        
 <footer class="bg-dark text-white pt-4">
   <div class="container">
     <div class="row">
-      <!-- Company Information -->
+
       <div class="col-md-4">
         <h5>Company Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, pulvinar facilisis justo mollis.</p>
       </div>
       
-      <!-- Useful Links -->
+
       <div class="col-md-4">
         <h5>Useful Links</h5>
         <ul class="list-unstyled">
@@ -25,7 +25,7 @@
         </ul>
       </div>
       
-      <!-- Social Media Links -->
+      
       <div class="col-md-4">
         <h5>Follow Us</h5>
         <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
@@ -47,4 +47,4 @@
 
 <style lang="scss" scoped>
 
-</style>
+</style> -->

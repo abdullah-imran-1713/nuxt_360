@@ -1,6 +1,8 @@
 <template>
     <nav class="new-sidebar">
-      <div v-for="(item, index) in items" :key="index" class="card">
+      <div v-for="(item, index) in items" :key="index" class="card"> <!-- <div v-for="(item, index) in items" :key="index" class="card">: This sets up a loop using v-for to iterate over each item in the items array. For each item, it creates a <div> element with the class "card". The :key attribute is used to provide a unique identifier for each rendered item. -->
+        <!-- v-for="(item, index) in items" is looping over each item in the items array and rendering the content inside the loop for each item -->
+        <!-- IMPORTANT: Yes, that's correct! The v-for directive is creating a <div> element for each item in the items array. For every iteration of the loop, a new <div> element with the class "card" is generated in the DOM structure. Each of these <div> elements represents a single item in the array, allowing you to dynamically render content for each item. This is a common pattern in Vue.js for rendering lists of items based on data from an array or iterable.-->
         <h3>{{ item.title }}</h3>
         <p>{{ item.content }}</p>
       </div>
@@ -9,6 +11,7 @@
   
   <script setup>
   import { ref, watch } from 'vue';
+import { CAR_VARIANTS } from '~/constants/general';
   
   const props = defineProps({
     option: String
@@ -19,13 +22,13 @@
   // Function to load data based on the selected option
   const loadData = (option) => {
     switch(option) {
-      case 'Trim':
+      case CAR_VARIANTS.TRIM:
         items.value = [
           { title: 'Trim Option 1', content: 'Content for Trim Option 1' },
           { title: 'Trim Option 2', content: 'Content for Trim Option 2' },
         ];
         break;
-      case 'Color':
+      case CAR_VARIANTS.COLOR:
         items.value = [
           { title: 'Red', content: 'Content for Red Color' },
           { title: 'Blue', content: 'Content for Blue Color' },

@@ -25,7 +25,6 @@ import TheExperience from '~/component/TheExperience.vue';
     <ClientOnly>
         <TheExperience />
         <Sidebar />
-        <BRButton />
     </ClientOnly>
 </template>
  
