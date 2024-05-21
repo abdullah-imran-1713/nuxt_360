@@ -42,14 +42,16 @@ const gltfLoader = new GLTFLoader();
 // Loading state and progress
 const isLoading = ref(true);
 const loadingProgress = ref(0);
+const garageLoadingProgress = ref(0);
+const carLoadingProgress = ref(0);
 
 // Garage model
 gltfLoader.load('/garage/scene.gltf', (gltf) => { // Once the model is loaded successfully, the provided callback function is executed, passing the loaded gltf object as a parameter.
     garageModel = gltf.scene; // gltf.scene refers to the root of the loaded GLTF scene, which contains all the objects and elements defined in the GLTF file
     garageModel.position.set(0, 0, 0);
     scene.add(garageModel);
-    loadingProgress.value += 50;
-    checkLoadingStatus();
+    garageLoadingProgress.value = 100;
+    updateLoadingProgress();
     // loading.value = false;
 },
     // (xhr) => { // onProgress parameters
@@ -57,9 +59,13 @@ gltfLoader.load('/garage/scene.gltf', (gltf) => { // Once the model is loaded su
         // console.log(xhr);
         (xhr) => {
     // Calculate progress for garage model loading
-    loadingProgress.value = (xhr.loaded / xhr.total) * 50;
-  
- });
+    if (xhr.total > 0) {
+      garageLoadingProgress.value = (xhr.loaded / xhr.total) * 100;
+    } else {
+      garageLoadingProgress.value = 100; // Default to 100% if total is 0 or not provided
+    }
+    updateLoadingProgress();
+  });
 
 // Car model
 gltfLoader.load('/carr/scene.gltf', (gltf) => {
@@ -70,23 +76,29 @@ gltfLoader.load('/carr/scene.gltf', (gltf) => {
     } else {
         scene.add(model); // If garageModel is not available, add the car model directly to the scene
     }
-    loadingProgress.value += 50;
-    checkLoadingStatus();
+    carLoadingProgress.value = 100;
+    updateLoadingProgress();
 
 },
     // (xhr) => { // onProgress parameters
     //     // updateProgress(xhr);
     //     // console.log(xhr);
     (xhr) => {
-    // Calculate progress for garage model loading
-    loadingProgress.value = (xhr.loaded / xhr.total) * 50;
+    // Calculate progress for car model loading
+    if (xhr.total > 0) {
+      carLoadingProgress.value = (xhr.loaded / xhr.total) * 100;
+    } else {
+      carLoadingProgress.value = 100; // Default to 100% if total is 0 or not provided
+    }
+    updateLoadingProgress();
   
 });
     
 
-    // Check loading status
-function checkLoadingStatus() {
-  if (loadingProgress.value >= 100 && isLoading.value) {
+    // Update the combined loading progress
+function updateLoadingProgress() {
+  loadingProgress.value = (garageLoadingProgress.value + carLoadingProgress.value) / 2;
+  if (loadingProgress.value >= 100) {
     isLoading.value = false;
     setTimeout(() => {
       // Optionally, add fade-out animation here
@@ -150,7 +162,7 @@ const loop = () => {
 <template>
     <div>
         <!-- Loading screen -->
-    <div v-if="isLoading" class="loading-screen">
+        <div v-if="isLoading" class="loading-screen">
       <div class="loading-progress">{{ loadingProgress.toFixed(2) }}%</div>
       <div class="progress-bar-container">
         <div class="progress-bar" :style="{ width: loadingProgress + '%' }"></div>
