@@ -17,7 +17,7 @@ import { CAR_VARIANTS } from '~/constants/general';
     option: String
   });
   
-  const items = ref([]);
+  const items = ref([]); // const items = ref([]); initializes a reactive reference to an empty array that will be populated and tracked by Vue, allowing dynamic updates in the template
   
   // Function to load data based on the selected option
   const loadData = (option) => {
