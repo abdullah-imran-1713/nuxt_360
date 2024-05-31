@@ -11,14 +11,14 @@
     
     <div class="sidebar-buttons">
         <button class="sidebar-button" @click="showNewSidebar = false">Order Test Drive</button> <!-- When the button is clicked, the expression showNewSidebar = false is executed -->
-        <button class="sidebar-button" @click="showNewSidebar = false">Change Vehicle</button>
-        <button class="sidebar-button" @click="showNewSidebar = false">Start Over</button>
-        <button class="sidebar-button" @click="showNewSidebar = false">Save</button>
-        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.TRIM)">Trim</button> <!-- When the button is clicked, the handleClick method is called with the argument 'Trim' -->
-        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.PACKAGES)">Packages</button>
-        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.COLOR)">Color</button>
-        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.WHEELS)">Wheels</button>
-        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.INTERIOR)">Interior</button>
+        <NuxtLink to="/" class="d-flex justify-content-center text-decoration-none"><button class="sidebar-button" @click="showNewSidebar = false">Change Vehicle</button></NuxtLink>
+        <button class="sidebar-button" @click="showNewSidebar = false, handleStartOverClick()">Start Over</button>
+        <button class="sidebar-button" @click="showNewSidebar = false, handleSaveClick()">Save</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.TRIM), handleCamera()">Trim</button> <!-- When the button is clicked, the handleClick method is called with the argument 'Trim' -->
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.PACKAGES), handleCamera()">Packages</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.COLOR), handleCamera()">Color</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.WHEELS), handleCamera()">Wheels</button>
+        <button class="sidebar-button text-start" @click="handleClick(CAR_VARIANTS.INTERIOR), handleInteriorClick()">Interior</button>
       </div>
     </nav>
 
@@ -48,6 +48,25 @@ const handleClick = (optonclick) => { // This defines a function named handleCli
   selectedOption.value = optonclick;
   showNewSidebar.value = true;
 };
+
+const emit = defineEmits(['switch-to-interior']);
+
+const handleInteriorClick = () => {
+  
+  emit('switch-to-interior');
+};
+
+const handleStartOverClick = () => {
+  emit('switch-to-basic');
+};
+const handleSaveClick = () => {
+  emit('switch-to-basic');
+  alert('saved!')
+};
+const handleCamera = () => {
+  emit('switch-to-basic');
+};
+
 </script>
 
 <style scoped>

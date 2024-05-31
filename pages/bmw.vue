@@ -2,7 +2,6 @@
     <div>
     <ClientOnly>
         <TheExperience selectedCar="BMW" />
-        <Sidebar />
     </ClientOnly>
     </div>
 </template>

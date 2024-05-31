@@ -24,7 +24,7 @@
                     <p>Fiat</p>
                     <p>Ford</p>
                     <p>GMC</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/bmw" >Honda</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/nissan" >Nissan</NuxtLink>
                     <p>Hyundai</p>
                     <p>Infinity</p>
                     <p>Jaguar</p>
@@ -35,18 +35,18 @@
                     <p>Land Rover</p>
                     <p>Lexus</p>
                     <p>Lincoln</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/bmw" >Maserati</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/benz" >Mercedes-Benz </NuxtLink>
                     <p>Mazda</p>
-                    <p>Mercedes-Benz</p>
+                    <p>Maserati</p>
                     <p>MINI</p>
                     <p>Mitsubishi</p>
-                    <p>Nissan</p>
+                    <p>Honda</p>
                 </div>
                 <div class="col">
                     <p>Nissan</p>
-                    <p>Porsche</p>
+                    <p>Scion </p>
                     <p>RAM</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/bmw" >Scion</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/porsche" >Porsche</NuxtLink>
                     <p>Subaru</p>
                     <p>Toyota</p>
                     <p>Volkwagen</p>
