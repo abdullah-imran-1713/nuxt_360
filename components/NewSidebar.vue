@@ -13,77 +13,71 @@
     </nav>
   </template>
   
-  <script>
-import { ref, watch } from 'vue';
-import { CAR_VARIANTS } from '~/constants/general';
-
-export default {
-  props: {
+  <script setup>
+  import { ref, watch } from 'vue';
+  import { CAR_VARIANTS } from '~/constants/general';
+  
+  const props = defineProps({
     option: {
       type: String,
       required: true
     }
-  },
-  setup(props) {
-    const items = ref([]); // Initializes a reactive reference to an empty array that will be populated and tracked by Vue, allowing dynamic updates in the template
-
-    // Function to load data based on the selected option
-    const loadData = (option) => {
-      switch(option) {
-        case CAR_VARIANTS.TRIM:
-          items.value = [
-            { title: '2016 i8 Automatic', amount: '$22,480.00 MSRP 19',paragraph:'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
-            { title: '2016 7series', amount: '$22,480.00 MSRP 19',paragraph:'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
-            { title: '2016 i8 Automatic', amount: '$22,480.00 MSRP 19',paragraph:'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
-            { title: '2016 7series', amount: '$22,480.00 MSRP 19',paragraph:'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
-          ];
-          break;
-        case CAR_VARIANTS.PACKAGES:
-          items.value = [
-            { imagepath:'https://ascentoncloud.com/selfpos/images/package1.jpg',title:'Media Package Professional', amount:'$900.00' },
-            { imagepath:'https://ascentoncloud.com/selfpos/images/package2.jpg',title:'Interior Comfort Package', amount:'$550.00' },
-            { imagepath:'https://ascentoncloud.com/selfpos/images/package3.jpg',title:'Driver Comfort Package', amount:'$550.00' , paragraph:'Severntronic Steering Crusie control with break park distance control (PDC), rearS0507'}
-          ];
-          break;
-        case CAR_VARIANTS.COLOR:
-          items.value = [
-            { hexacolor:'#333',title: 'Stealth', amount:'$ 550.00' },
-            { hexacolor:'#ccc',title: 'Stealth', amount:'$ 550.00' },
-          ];
-          break;
-          case CAR_VARIANTS.WHEELS:
-          items.value = [
-            { imagepath:'https://ascentoncloud.com/selfpos/images/wheel2.jpg',title: '16 "Star-spoke style 654 light alloy wheels', amount: '$ 550.00' },
-            { imagepath:'https://ascentoncloud.com/selfpos/images/wheel1.jpg',title: '16 "Star-spoke style 654 light alloy wheels', amount: '$ 550.00' },
-          ];
-          break;
-          case CAR_VARIANTS.INTERIOR:
-          items.value = [
-          { hexacolor:'#333',title: 'Fineline Stream Wood Interior trim with Oxside Silver finish', amount:'$ 550.00' },
-            { hexacolor:'#ccc',title: 'Aluminium interior trim with Black high-gloss finish', amount:'$ 550.00' },
-          ];
-          break;
-        default:
-          items.value = [];
-      }
+  });
+  
+  const items = ref([]); // Initializes a reactive reference to an empty array that will be populated and tracked by Vue, allowing dynamic updates in the template
+  
+  // Function to load data based on the selected option
+  const loadData = (option) => {
+    switch(option) {
+      case CAR_VARIANTS.TRIM:
+        items.value = [
+          { title: '2016 i8 Automatic', amount: '$22,480.00 MSRP 19', paragraph: 'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
+          { title: '2016 7series', amount: '$22,480.00 MSRP 19', paragraph: 'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
+          { title: '2016 i8 Automatic', amount: '$22,480.00 MSRP 19', paragraph: 'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
+          { title: '2016 7series', amount: '$22,480.00 MSRP 19', paragraph: 'Petrol100 kW 136 hp Benifit in kind 19% 54.3-58.9 mpg CO2 emission 112.0 -122.0 g/km' },
+        ];
+        break;
+      case CAR_VARIANTS.PACKAGES:
+        items.value = [
+          { imagepath: 'https://ascentoncloud.com/selfpos/images/package1.jpg', title: 'Media Package Professional', amount: '$900.00' },
+          { imagepath: 'https://ascentoncloud.com/selfpos/images/package2.jpg', title: 'Interior Comfort Package', amount: '$550.00' },
+          { imagepath: 'https://ascentoncloud.com/selfpos/images/package3.jpg', title: 'Driver Comfort Package', amount: '$550.00', paragraph: 'Severntronic Steering Crusie control with break park distance control (PDC), rearS0507' }
+        ];
+        break;
+      case CAR_VARIANTS.COLOR:
+        items.value = [
+          { hexacolor: '#333', title: 'Stealth', amount: '$ 550.00' },
+          { hexacolor: '#ccc', title: 'Stealth', amount: '$ 550.00' },
+        ];
+        break;
+      case CAR_VARIANTS.WHEELS:
+        items.value = [
+          { imagepath: 'https://ascentoncloud.com/selfpos/images/wheel2.jpg', title: '16 "Star-spoke style 654 light alloy wheels', amount: '$ 550.00' },
+          { imagepath: 'https://ascentoncloud.com/selfpos/images/wheel1.jpg', title: '16 "Star-spoke style 654 light alloy wheels', amount: '$ 550.00' },
+        ];
+        break;
+      case CAR_VARIANTS.INTERIOR:
+        items.value = [
+          { hexacolor: '#333', title: 'Fineline Stream Wood Interior trim with Oxside Silver finish', amount: '$ 550.00' },
+          { hexacolor: '#ccc', title: 'Aluminium interior trim with Black high-gloss finish', amount: '$ 550.00' },
+        ];
+        break;
+      default:
+        items.value = [];
     }
-
-    // Watch for changes in the prop
-    watch(() => props.option, (newValue) => {
-      loadData(newValue);
-    });
-
-    // Load initial data if option is already set
-    if (props.option) {
-      loadData(props.option);
-    }
-
-    return {
-      items
-    };
   }
-}
-</script>
+  
+  // Watch for changes in the prop
+  watch(() => props.option, (newValue) => {
+    loadData(newValue);
+  });
+  
+  // Load initial data if option is already set
+  if (props.option) {
+    loadData(props.option);
+  }
+  </script>
+  
   
   <style scoped>
   .new-sidebar {

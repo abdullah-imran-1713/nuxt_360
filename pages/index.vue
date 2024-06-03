@@ -4,7 +4,7 @@
  
  <template>
     <div class="template-container">
-        <div class="d-flex justify-content-center pt-5 pb-5">
+        <div class="d-flex justify-content-center pt-5 pb-3">
             <h2>Choose a brand</h2>
         </div>
         <div class="container">
@@ -13,7 +13,7 @@
                     <p>Acura</p>
                     <p>Alfa Romeo</p>
                     <p>Audi</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/bmw" >BMW</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" :to="{ name: 'id', params: { id: 'bmw' } }">BMW</NuxtLink>
                     <p>Buick</p>
                     <p>Cadillac</p>
                     <p>Chevrolet</p>
@@ -24,7 +24,7 @@
                     <p>Fiat</p>
                     <p>Ford</p>
                     <p>GMC</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/nissan" >Nissan</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" :to="{ name: 'id', params: { id: 'nissan' } }">Nissan</NuxtLink>
                     <p>Hyundai</p>
                     <p>Infinity</p>
                     <p>Jaguar</p>
@@ -35,7 +35,7 @@
                     <p>Land Rover</p>
                     <p>Lexus</p>
                     <p>Lincoln</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/benz" >Mercedes-Benz </NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" :to="{ name: 'id', params: { id: 'benz' } }">Mercedes-Benz</NuxtLink>
                     <p>Mazda</p>
                     <p>Maserati</p>
                     <p>MINI</p>
@@ -46,7 +46,7 @@
                     <p>Nissan</p>
                     <p>Scion </p>
                     <p>RAM</p>
-                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" to="/porsche" >Porsche</NuxtLink>
+                    <NuxtLink class="text-decoration-none text-dark brand-link fw-bold" :to="{ name: 'id', params: { id: 'porsche' } }">Porsche</NuxtLink>
                     <p>Subaru</p>
                     <p>Toyota</p>
                     <p>Volkwagen</p>

@@ -6,9 +6,7 @@
     </div>
 </template>
 <script>
-export default {
-    
-}
+
 </script>
 <style>
     .nav-css
